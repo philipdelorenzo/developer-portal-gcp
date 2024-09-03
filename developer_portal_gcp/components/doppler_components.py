@@ -11,9 +11,9 @@ doppler = DopplerSDK()
 doppler.set_access_token(DOPPLER_TOKEN)
 
 class ProjectState(rx.State):
-    project: list[dict] = vars(doppler.projects.list())["projects"]
+    projects: list[dict] = vars(doppler.projects.list())["projects"]
 
-def project(_project: dict) -> rx.Component:
+def project_button(_project: dict) -> rx.Component:
     """The project component."""
     return rx.container(
         rx.dialog.root(
@@ -30,7 +30,6 @@ def project(_project: dict) -> rx.Component:
                         spacing="2",
                         padding="8px",
                     ),
-                    #rx.spacer(direction="column", spacing="1"),
                     rx.box(
                         rx.text("Created At: ",
                                 weight="bold",
@@ -39,7 +38,6 @@ def project(_project: dict) -> rx.Component:
                         spacing="5",
                         padding="8px",
                     ),
-                    #rx.spacer(direction="column", spacing="1"),
                     rx.box(
                         rx.text("Updated At: ",
                                 weight="bold",
@@ -48,7 +46,6 @@ def project(_project: dict) -> rx.Component:
                         spacing="2",
                         padding="8px",
                     ),
-                    #rx.spacer(direction="column", spacing="1"),
                 ),
                 rx.dialog.close(
                     rx.button("Close Project", size="3"),
